@@ -1,2 +1,84 @@
-Literate Code
+Literate Code = Software Composition
 ===
+
+Rubyists love pretty
+
+# "Best Practices"
+
+* Use descriptive variable names
+* Add whitespace for clarity
+* Use object orientation properly
+* Write comments
+
+However, this isn't always accurate to our code. We need to redefine our expectations.
+
+# Software Composition
+
+* The Multitude of Audiences
+* The Multiplicity of Forms
+* An aside: Literacy Crisis
+
+# The Multitude of Audiences
+
+Writing software is hard because the audience is for multiple audiences. There isn't a defined target audience.
+
+* Default audience: The Computer
+* Reflexive Audience: The Programmer
+* * Need to write code that we can understand
+* The 'Other' Audience
+* * Colleagues
+* * Coworkers
+* The forgotten audience: End-Users
+
+Trade-offs have to be made. What are you going to cater more too? The computer, the programmer, the other?
+
+"Is code that is never executed actually code?" Understand the code and the results.
+
+# The Multiplicity of Forms
+
+Also difficult because you have to choose how to compose a program in multiple forms at once.
+
+Quines
+
+    puts <<2*2,2
+    puts <<2*2,2
+    2
+
+Source can be used as a medium as well.
+
+## Source vs Binary
+
+It does matter what the binary code turns our source into. We don't often think about it as Rubyists.
+
+## Code vs Data
+
+Code is Data and Data is Code. When do you use a yml file or when do you use DSL?
+
+## Polyglot
+
+Why is CoffeeScript so controversial? You have to know lots of different things. A basic Rails app uses:
+
+* Ruby
+* CoffeeScript/JavaScript
+* SCSS/CSS
+
+It can get complicated quickly. What do we put where? How much do we put where?
+
+## Temporal Issues
+
+Git!
+
+## Multiple Representations
+
+Showing HTML, XML, JSON, etc... We have to choose what to show to who and how
+
+## Backporting
+
+How to handle multiple stable branches. Easy to lose if you don't apply it well.
+
+## Levels of Abstraction
+
+# An Aside
+
+Software as a crisis of literacy. There's some terminology problems. This happens when two worlds collide.
+
