@@ -1,0 +1,75 @@
+High Performance Ruby
+===
+
+evented: arranging I/O
+threads: do work
+
+nginx
+* trinidad = jruby
+* web app
+
+Concurrency
+* process concurrency
+* threaded concurrency
+* evented concurrency
+
+Process Concurrency
+---
+* 1 req = 1 process = 150mb
+* '100 reqs?' = 15Gb
+* Orchestrated by? Kernel
+* Unicorn, Passenger
+
+Threaded Concurrency
+---
+* 1 req = 1 thread = 2kb
+* 100 reqs? = 150Mb+200kb
+* Orchestrated by? Kernel
+* Mongrel*
+
+Threading has sucked for awhile. But they are cheap!
+
+Process vs Threaded, Threaded wins.
+
+WTF does the * mean?
+
+Making them all thread safe: in 2006 mongrel was, rails wasn't, Ruby 1.8 wasn't. So we use process concurrency
+
+2008
+---
+"Rails 2.2 was thread safe", but nobody care
+
+2010
+---
+GIL = Global Interpreter Lock, 1.9 has threading, 1 thread of Ruby at a time
+
+2011
+---
+MRI isn't threadsafe. Instead, use jruby or rubinius 2.x
+When using jruby you need to add specific gems
+
+Take a look at **trinidad**
+github.com/engineyard/todo.git for a jruby thread example
+
+"Store state elsewhere; Unless its safe"
+Web apps are* thread safe
+
+**Evented**- any I/O? -> do something -> start over
+Sort of like a receptionist in MadMen
+
+Why evented?
+---
+* High concurrency
+* flat memory usage
+* high throughput
+Evented code should not **block**
+Evented code should not **do work**
+
+cache hits
+
+req -> I/O -> work
+req -> evented -> threads
+req -> nginx -> thrinidad
+
+Mongrel + Rubinius 
+Trinidad + nginx

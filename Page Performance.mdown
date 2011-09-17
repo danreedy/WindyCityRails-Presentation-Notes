@@ -1,0 +1,117 @@
+# Page Performance 
+
+## Is it premature
+* Gzip
+* Adding database indexes
+* nginx
+
+## Measure != Premature
+'Good Enough' metrics
+* avg response time
+* server load
+* memory footprint
+* slow queries
+* load capacity
+
+## Performance Tuning Pledge
+* Measure before and after
+* Document findings
+* Together as a team: monitor, fix, or forget
+
+## Performance Tuning Workflow
+* Page Load
+* Application Tuning
+* DB Performance
+* Javascript
+* Architecture* <-- *not too much discussion today*
+
+## Page Load Tools
+* YSlow *FF & Chrome*
+* Page Speed *FF & Chrome*
+* Dynatrace *IE & FF*
+* Webpagetest.org *IE, Chrome, && FF*
+
+Javascript is single-threaded, so be careful when executing javascript.
+A bug in IE prohibits conditional comments from running concurrently.
+When running tools make sure you save your waterfall diagrams so that you can compare them.
+
+## Key Solutions
+* Gzip
+* Load CSS at top, JS at bottom
+
+# Backend Performance
+## Tools
+* Request log analyzer
+* Splunk
+* New Relic
+* Rack::Bug
+* Built in Benchmark & profiling tools
+
+## Common culprits
+* Not leveraging the database
+* Too much memory
+* too many queries
+* generally slow code
+
+## N + 1
+Query's can suck
+
+**Wrong**
+    
+    clients = Client.limit(10)
+    clients.each do |client|
+      puts client.address.postcode
+    end
+
+**Correct**
+    
+    clients = Client.include(:address).limit(10)
+    clients.each do |client|
+      puts client.address.postcode
+    end
+
+## Libraries
+* Document why you have it
+* Remove unused, reduce dependencies
+* Pick between duplicate tools
+* Try to stay current
+* RVM, Bundler, and Git branches for testing
+* "Is it safe to upgrade that library"
+
+# DB Tuning
+* Slow Queries
+* Not enough memory
+
+## DB Tools
+* Rails log
+* Slow query log
+** launchpad.net/percona-toolkit
+* Explain
+* Server profiling (CPU, IO, Mem, etc)
+
+# Testing
+* Measure First
+* Make performance tuning changes in the most tested part
+* Have the most important poarts of your app well-tested
+* Well-tested code tends to be well factored
+
+# Javascript is power
+* Don't hate javascript, hate the browser
+
+## Browser Comparison
+* jsperf.com
+** Compare js performance across browsers
+* jsfiddle.net (full page structure)
+
+# Perf Features in Rails 3
+* Only load what you need
+* AREL query structure
+* Bundler
+* Ruby 1.9.2
+* jQuery by default
+* Prepared statement caching
+* Asset Pipeline
+
+# Other Tools
+* RackBug
+* NewRelic

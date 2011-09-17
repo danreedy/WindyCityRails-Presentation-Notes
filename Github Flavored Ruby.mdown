@@ -1,0 +1,41 @@
+# Github Flavored Ruby
+* Readme Driving Development
+* RakeGem
+* TomDoc
+* Semantic Versioning
+
+These are some helpful tools & systems
+Thomas - an opinionated system for ruby
+
+* **T**om's
+* **H**ighly
+* **O**pinionated
+* **M**ethod for
+* **A**wesome
+* **S**uccess
+
+# Readme Driving Development
+
+This is **not** the waterfall method of development
+
+This is also **not** the cowboy coder method (agile?)
+
+"A perfect implementation of the wrong specification is useless"
+
+Use the **README** as your specification. Write the README first, from the user's perspective
+
+* Why it exists
+* Installation/Configuration
+* Requirements
+* Code Examples
+* Other helpful information
+
+Take the README.md and rename it SPEC.md and then start pulling bits out and putting into the actual README.me
+
+# RakeGem
+
+Rake-Based Gem Builder & deployer, doccer, tester, and manifster
+
+No dependencies, two files. Rakefile & Gemspec
+
+Hand-rolled gemspec + simple rake tasks
