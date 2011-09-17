@@ -146,4 +146,41 @@ How could you possibly know what this means without docs, so:
           # ...
         end
       end
-    end
+    end    
+
+## Other stuff in TomDoc
+
+* SemVer compatible
+* Public API diff generation
+* Tomfolio
+* Future Tom
+
+Available at tomdoc.org
+
+# SemanticVersioning
+
+Avoids dependency hell. Either version lock or version promiscuity. Hard to find the balance.
+
+Depends on a **Public API** 
+
+## Major
+
+* Backwards incompatible
+* Big changes
+
+## Minor
+
+* Backwards compatible
+* New functionality
+* Big internal changes
+
+## Patch
+
+* Backward compatible
+* Bug fixes
+
+## Bundler Usage
+
+    gem 'gollum', "~> 2.4"
+
+Anything > 2.4.x and < 3.0.0
