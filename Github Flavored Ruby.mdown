@@ -184,3 +184,9 @@ Depends on a **Public API**
     gem 'gollum', "~> 2.4"
 
 Anything > 2.4.x and < 3.0.0
+
+# Q&A
+
+## Why TomDoc over Yard
+
+Yard is overly optimized for the machine, but didn't exist when TomDoc started.
