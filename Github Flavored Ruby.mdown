@@ -38,4 +38,12 @@ Rake-Based Gem Builder & deployer, doccer, tester, and manifster
 
 No dependencies, two files. Rakefile & Gemspec
 
-Hand-rolled gemspec + simple rake tasks
+Hand-rolled gemspec + simple rake tasks, gemspec is already good at managing the details.
+
+RakeGem creates a Gemspec template and includes the Manifest. Glob vs Individually listed files. Matter of preference of course.
+
+Very handy set of rake tasks for creating, updating, releasing, etc...
+
+The nice thing is you can just dump them out of the rakefile. 
+
+Rakegem <3 Customization. Just look for the section you want to modify
