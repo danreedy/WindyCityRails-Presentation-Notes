@@ -1,2 +1,118 @@
 Lightening Talks
 ===
+
+# Citizen Science
+
+Example, Galaxy Zoo. Using the resources available. Taking large amounts of data and using volunteers.
+
+Might be called **crowdsource science**.
+
+Using lots of technologies, including Rails.
+
+Github: zooniverse/Talk.
+
+The future is collaboration with machines & people.
+
+# Blake from Groupon - Talking about Bob Ross
+
+Sweet afro & hypnotic voice
+
+Three things to learn from Bob Ross and there is no 'cooking show' management. Bob shows all steps.
+
+The Bob Ross Promise: **Show everything in every episode, step-by-step**
+
++ Show Every Step
++ Dispel Fear & Building Confidence
++ Make mistake & show them as "Happy Accidents". Remember, *everyone* makes mistakes
+
+# Justin Love 
+
+A problem occurs in Rails 3.0.3. One attribute in the model, three in the view.
+
+In the view it was easy, but comes in as separate attributes and there might not be an order.
+
+Uses **fields_for** expects a relationship, so you can build it. 
+
+The ugly truth is that _persisted?_ doesn't exist unless it has some kind of ORM.
+
+    def persisted?; false; end;
+
+
+# Phil - Groupon
+
+Shell skills
+
+* gzip -dc :: to standard out
+* | head -15 :: show top 15
+* cut -d'|' -f3,4 :: cut & show fields three and four
+* sort 
+* uniq -c
+* sort -n :: reverse the file that's sorted
+* tail -10 :: last 10
+
+**Dance Break**
+
+* > filename.txt :: export to a file
+* esc. :: pulls in last argument
+
+# How to be the most interesting man in the world
+
+How to interact with people. Engineering rules to interact with people.
+
+**Always make the other person feel important**
+
+Get the other person to talk about one of the most important things to them which is them.
+
+Give them 10 minutes and you take 1 minute.
+
+**Most people are just waiting for their turn to talk**
+
+Good questions:
+
+* How so?
+* Why's that?
+* How do you feel about that?
+
+Best ice breaker: **"Busy Day?", "Why?"**
+
+# Don't be Nervous
+
+* Network
+* Fight the Clump
+* Meet New People
+* Interact with People
+* Awkward is Good
+* You never know who you'll meet
+* Improv!
+* Present
+
+# High Available & QoS
+
+Everyone has maintenance issues. 
+
+## Braintree's Secret
+
+How to avoid downtime...Made the switch to postgre.
+
+* Be able to perform downtime-inducing maintenance in less than 30 seconds
+* Suspend traffic. A slow transaction is better than 503 response
+* * Happens through a custom web server
+* Automate infrastructure changes
+
+## Implementation
+* Broxy (Python, Tornado)
+* * accepts requests
+* * puts them into Redis
+* * pop the response queue
+* Dispatcher (Ruby)
+* * pick up requests from Redis
+* * convert to Rack hash & process through Rails
+* * push response back to Redis
+
+## Quality of Service
+
+* Don't want to return 4xx and 5xx if a merchant exceed rate limit
+* Instead we want to slow them down with affecting service
+* Singly broxy process can dispatch req in different order
+* HTTP requests aren't always FIFO
+* Fair Share Scheduling 
