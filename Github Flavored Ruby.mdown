@@ -47,3 +47,103 @@ Very handy set of rake tasks for creating, updating, releasing, etc...
 The nice thing is you can just dump them out of the rakefile. 
 
 Rakegem <3 Customization. Just look for the section you want to modify
+
+The manifest is built from the git log.
+
+The files are available at http://github.com/mojombo/rakegem
+
+# TomDoc
+
+Evolved from RDoc over a few years. 
+
+There are four (basic) levles of documentation:
+
+* Line
+* * Near the exact line
+* * Highlight a unique situation
+* Code _<-- This is where TomDoc sits_
+* * Above a bit of code and explains larger sections of code
+* * Used for developers, people in the code
+* API
+* * Similar to Code and much will be the same.
+* * Mostly just selected bits
+* * Presented to the user via some method, such as HTML
+* * For consumers
+* Book
+* * Very complex
+* * You need more guidance
+* * Highly level of hand-holding
+
+# Why document code?
+
+Because we have questions.
+
+* What does it do?
+* Is it considered public?
+* What params are expected?
+* What types are the params?
+* * Doesn't matter that we use a soft-type system.
+* What are valid options?
+* * Options are used all over the place
+* * There are specific options that you expect, so define it
+* How do I use it?
+* What type is the return?
+* * This is really important because it can cause code breakage
+
+But why? **Dammit Jim, I'm a human, not a machine**
+
+Documentation is for humans not machines
+
+## Example of TomDoc
+
+Gollum wiki (from github) is written with TomDoc
+
+    class Gollum
+      class Wiki
+        # Public: Check whether the wiki's git repo exists on the filesystem
+        #
+        # Returns true if the repo exists, and false if it does not
+        def exists?
+          # ...
+        end
+      end
+    end
+
+What does _exists?_ mean?
+
+* What does it do?
+* Is it considered public?
+* What type does it return?
+
+## Another Example
+
+    class Gollum
+      class Wiki
+        # 
+        #
+        # 
+        def write_page(name, format, data, commit = {})
+          # ...
+        end
+      end
+    end
+
+How could you possibly know what this means without docs, so:
+
+    class Gollum
+      class Wiki
+        # Public: write a new version of a page to the Gollum repo root
+        #
+        # name    - The String name of the page
+        # format  - The Symbol format of the page
+        # data    - The new String contents of the page.
+        # commit  - The commit Hash details:
+        #           :message   - The String commit message
+        # ...
+        #
+        # Returns the String SHA1
+        def write_page(name, format, data, commit = {})
+          # ...
+        end
+      end
+    end
