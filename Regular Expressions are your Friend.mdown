@@ -1,2 +1,82 @@
 Regular Expression are Your Friend!
 ===
+
+Patterns against a Subject for a Match
+
+Found everywhere, editors
+
+* vim
+* emacs
+* TextMate
+* RubyMine
+* Redcar
+* BBEdit
+
+Languages
+
+* perl
+* ruby
+* python
+* lua
+
+RegEx is a Meta Language
+
+# Reload!
+
+Basic regular expression
+
+    /^Hello [Ww]orld.?$/
+     
+    # ^ = At the Beginning
+    # Hello = This exact text
+    # [Ww] = Either W or w
+    # orld - This exact text
+    # .? = Anything else
+    # $ = At the end of the string
+    
+## Grouping
+
+Returns our match and a separate group
+
+## Quantifiers
+
+    * (Zero or more)
+    + (One or more)
+    ? (one or none)
+    {n,m} (Only n matches up to m)    
+
+# Assertions
+
+Lookahead + Lookbehind = Lookaround or zero-width assertions
+
+if-else statements that do not return anything
+
+## Lookaround
+
+Broken into **positive** and **negative**
+
+## Lookahead
+
+    /b(?=a)/ <= Positive, everything ahead has to match to be true
+    /b(?!a)/ <= Negative, everything ahead should not match to be true
+    
+    /b(?=a)/
+    _b_acon # true, it is followed by the letter a
+    beacon # false, is not followed by the letter a
+    
+## Lookbehinds
+
+    /(?<=o)l/
+    poo_l_ # true, o does preceed l
+    peel # false, o does not preceed l
+    
+## Realworld Examples
+
+Validates the length of at least 2
+
+    /(?=.{2,}).+/    
+
+Number to Currency
+
+    /(\d)(?=(\d{3})+(?!\d))/, '\1,'
+    # 1000000.00 => 1,000,000.00
