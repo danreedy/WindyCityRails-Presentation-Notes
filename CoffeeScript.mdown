@@ -1,2 +1,153 @@
 CoffeeScript
 ===
+
+A language that compiles down to Javascript.
+
+## What's wrong with Javascript?
+
+    --------------------------------------------
+    | All of Javascript                        |
+    |                                          |
+    |                                          |
+    |                                          |
+    |                                          |
+    |                                          |
+    |                          ________________|
+    |                          |the good parts |
+    --------------------------------------------
+
+* function
+* return
+* var
+* ==
+* for
+* prototype-based OO (because it's not easy)
+
+## What's Right?
+
+* closures/blocks
+* namespaces
+* loosely typed variables
+* evented instead of threaded
+
+## Starting Over Today
+
+* We just want the good parts
+* Improve the expressiveness of business logic
+* Interoperate with existing JS assets
+
+## Whirlwind Tour
+
+Intersection function for JS in CoffeeScript.
+
+    intersection = (ary1, ary2) ->
+      [ary2,ary1] = [ary1,ary2] if ary1.length > ary2.length
+      (x for x in ary1 when x in ary2)
+
+## Functions
+
+**No Arguments**
+
+    say_hello = -> "Hello, world"
+    # invoked with
+    say_hello()
+
+**Arguments**
+
+    say_hello = (name) -> "Hello, #{name}"
+    say_hello('Dan')
+
+**Classes**
+
+    class Person
+      constructor: (@first_name, @last_name) ->
+      full_name: -> "#{@first_name}" #{@last_name}"
+
+**Class: Inheritance**
+
+    class Employee extends Person
+      constructor: (first, last, @title) ->
+        super(first, last)
+      full_name: -> "#{super}, #{@title}"
+
+**Class: Instantiating**
+
+    employee = new Employee("Tim","Cook","CEO")
+    console.log employee.full_name()
+
+**Class: Fat Error**
+
+    class PersonController
+      constructor: (@person) ->
+      display_person: =>
+        $('#person_name').text(@person.full_name)
+
+**Comparisons**
+
+Javascript is bad:
+
+    1 == '1' // true
+    1 == '1.0' // true
+    1 == true // true
+    1 === '1.0' // false
+    1 === '1' // false
+
+CoffeeScript is Good:
+
+    1 is '1' # false
+    1 is '1.0' # false
+    1 is true # false
+    1 is 1 # true
+    1 is 1.0 # true
+
+    is
+    isnt
+    in
+    not
+    and
+    or
+
+**Existential Operator**
+
+Helps clear up sanity checks
+Javascript has _"undefined"_ and _null_
+CoffeeScript:
+  
+    $('#name').text(person.full_name) if person?
+    person ?= new Person("David", "Kinney")
+    beneficiary = spouse ? daughter
+    zip = lottery.drawWinner?().address?.zipcode
+
+## More Features
+
+**Prototypes**
+
+    String::dasherize = ->
+
+**Switch**
+
+    switch day
+      when 'Mon' then go work
+      else sleep
+
+**Try/Catch/Finally**
+
+## Stuff with Objects
+
+    yearsOld = alice: 10, bob: 9, charlie: 11
+    
+    ages = for child, age of yearsOld
+      "#{child} is #{age}"
+      
+** Destructing Objects**
+
+    {poet: {name, address: [street,city]}} = futureists
+
+## Big Gatcha
+
+CoffeeScript does not compile to the global namespace. You have to explicitly make class global
+
+    window.Person = Person unless window.person?
+    window.Employee = Employee unless window.employee?
+
+
